@@ -42,7 +42,7 @@ echo '  random-route: true'>>manifest.yml
 echo '  memory: '$ramsize'M'>>manifest.yml
 ibmcloud target --cf
 ibmcloud cf push
-domain=`ibmcloud cf app gesion2020 | grep routes | cut -f2 -d':' | sed 's/ //g'`
+domain=`ibmcloud cf app $appname | grep routes | cut -f2 -d':' | sed 's/ //g'`
 vmess=`echo '{"add":"'$domain'","aid":"64","host":"","id":"'$uuid'","net":"ws","path":"/'$path'","port":"443","ps":"IBMVPS","tls":"tls","type":"none","v":"2"}' | base64 -w 0`
 cd ..
     echo "Telegram：@bigfangfang"
