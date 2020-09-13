@@ -44,7 +44,7 @@ echo '  memory: '$ramsize'M'>>manifest.yml
 echo '  resource groups: '$resource groups'Default'>>manifest.yml
 ibmcloud target -g 4202c5cca9bc42949e54604b6a5de84f --cf
 ibmcloud cf push
-domain=`ibmcloud cf app $appname | 4202c5cca9bc42949e54604b6a5de84f | grep routes | cut -f2 -d':' | sed 's/ //g'`
+domain=`ibmcloud cf app $appname | grep routes | cut -f2 -d':' | sed 's/ //g'`
 vmess=`echo '{"add":"'$domain'","aid":"64","host":"","id":"'$uuid'","net":"ws","path":"/'$path'","port":"443","ps":"IBMVPS","tls":"tls","type":"none","v":"2"}' | base64 -w 0`
 cd ..
     echo "Telegram：@bigfangfang"
