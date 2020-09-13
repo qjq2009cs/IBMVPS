@@ -40,7 +40,7 @@ echo '  command: '/app/htdocs/v2ray'' >>manifest.yml
 echo '  name: '$appname''>>manifest.yml
 echo '  random-route: true'>>manifest.yml
 echo '  memory: '$ramsize'M'>>manifest.yml
-echo '  resource: '$RESOURCE_GROUP'4202c5cca9bc42949e54604b6a5de84f'>>manifest.yml
+echo '  resource: '$resource groups'4202c5cca9bc42949e54604b6a5de84f'>>manifest.yml
 ibmcloud target -g 4202c5cca9bc42949e54604b6a5de84f --cf
 ibmcloud cf push
 domain=`ibmcloud cf app $appname | 4202c5cca9bc42949e54604b6a5de84f | grep routes | cut -f2 -d':' | sed 's/ //g'`
