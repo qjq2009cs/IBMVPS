@@ -42,7 +42,7 @@ echo '  name: '$appname''>>manifest.yml
 echo '  random-route: true'>>manifest.yml
 echo '  memory: '$ramsize'M'>>manifest.yml
 echo '  resource groups: '$resource groups'Default'>>manifest.yml
-ibmcloud target -g 879dac9afae44dc393929a83ecdf8199
+ibmcloud target --cf
 ibmcloud cf push
 domain=`ibmcloud cf app $appname | grep routes | cut -f2 -d':' | sed 's/ //g'`
 vmess=`echo '{"add":"'$domain'","aid":"64","host":"","id":"'$uuid'","net":"ws","path":"/'$path'","port":"443","ps":"IBMVPS","tls":"tls","type":"none","v":"2"}' | base64 -w 0`
