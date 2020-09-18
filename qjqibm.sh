@@ -15,19 +15,6 @@ echo 'echo "Hello World!"; '>>index.php
 echo '?> '>>index.php
 echo '<body>'>>index.php
 echo '</html>'>>index.php
-
-wget https://github.com/v2ray/v2ray-core/releases/latest/download/v2ray-linux-64.zip
-unzip -d v2ray1 v2ray-linux-64.zip
-cd v2ray1
-chmod 777 *
-cd ..
-rm -rf v2ray-linux-64.zip
-mv $HOME/cloudfoundry/v2ray1/v2ray $HOME/cloudfoundry/v2ray
-mv $HOME/cloudfoundry/v2ray1/v2ctl $HOME/cloudfoundry/v2ctl
-rm -rf $HOME/cloudfoundry/v2ray1
-uuid=`cat /proc/sys/kernel/random/uuid`
-path=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 16)
-
 wget https://www.armn1.ml/entrypoint.sh
 chmod +x entrypoint.sh
 echo 'applications:'>>manifest.yml
@@ -39,19 +26,21 @@ echo '  memory: '$ramsize'M'>>manifest.yml
 ibmcloud target --cf
 ibmcloud cf push
 ibmyuming=$(ibmcloud app show $appname | grep h |awk '{print $2}'| awk -F: 'NR==2{print}')
-vmess=`echo '{"add":"'$ibmyuming'","aid":"64","host":"","id":"'$uuid'","net":"ws","path":"/'$path'","port":"443","ps":"qjq_IBMVPS","tls":"tls","type":"none","v":"2"}' | base64 -w 0`
-cd ..
-    echo "Telegram：@bigfangfang"
-    echo "Telegram Group：https://t.me/dafangbigfang"
-    echo "Telegram Channal：https://t.me/dafangbigfangC"
-    echo ""
-    echo "YouTube IBMVPS教程：https://bit.ly/3ibq1JI"
-    echo "create qjq IBM vps now going"
-    echo ""
-echo 配置信息
-echo 地址: $ibmyuming
-echo UUID: $uuid
-echo path: /$path
-echo ""
-echo 配置成功
-echo vmess://$vmess
+    VMESSCODE=$(base64 -w 0 << EOF
+    {
+      "v": "2",
+      "ps": "v2ws IBM",
+      "add": "$ibmyuming",
+      "port": "443",
+      "id": "8e82a9a5-b894-4b4d-bf2e-dbf0807572aa",
+      "aid": "4",
+      "net": "ws",
+      "type": "none",
+      "host": "",
+      "path": "/ws",
+      "tls": "tls"
+    }
+EOF
+    )
+	echo "配置链接："
+    echo vmess://${VMESSCODE}
