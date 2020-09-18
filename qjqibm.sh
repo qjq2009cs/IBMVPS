@@ -26,21 +26,19 @@ echo '  memory: '$ramsize'M'>>manifest.yml
 ibmcloud target --cf
 ibmcloud cf push
 ibmyuming=$(ibmcloud app show $appname | grep h |awk '{print $2}'| awk -F: 'NR==2{print}')
-    VMESSCODE=$(base64 -w 0 << EOF
-    {
-      "v": "2",
-      "ps": "v2ws IBM",
-      "add": "$ibmyuming",
-      "port": "443",
-      "id": "8e82a9a5-b894-4b4d-bf2e-dbf0807572aa",
-      "aid": "4",
-      "net": "ws",
-      "type": "none",
-      "host": "",
-      "path": "/ws",
-      "tls": "tls"
-    }
-EOF
-    )
-	echo "配置链接："
-    echo vmess://${VMESSCODE}
+vmess=`echo '{"add":"'$ibmyuming'","aid":"64","host":"","id":"'$uuid'","net":"ws","path":"/'$path'","port":"443","ps":"qjq_IBMVPS","tls":"tls","type":"none","v":"2"}' | base64 -w 0`
+cd ..
+    echo "Telegram：@bigfangfang"
+    echo "Telegram Group：https://t.me/dafangbigfang"
+    echo "Telegram Channal：https://t.me/dafangbigfangC"
+    echo ""
+    echo "YouTube IBMVPS教程：https://bit.ly/3ibq1JI"
+    echo "Thanks @CCChieh @不愿透露神秘大佬"
+    echo ""
+echo 配置信息
+echo 地址: $domain
+echo UUID: $uuid
+echo path: /$path
+echo ""
+echo 配置成功
+echo vmess://$vmess
