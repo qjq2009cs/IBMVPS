@@ -46,7 +46,7 @@ cd ..
     echo "Telegram Channal：https://t.me/dafangbigfangC"
     echo ""
     echo "YouTube IBMVPS教程：https://bit.ly/3ibq1JI"
-    echo "Thanks @CCChieh @不愿透露神秘大佬"
+    echo "create qjq IBM vps now going"
     echo ""
 echo 配置信息
 echo 地址: $ibmyuming
