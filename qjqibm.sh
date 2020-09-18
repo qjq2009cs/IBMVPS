@@ -31,22 +31,22 @@ echo '  memory: '$ramsize'M'>>manifest.yml
 ibmcloud target --cf
 ibmcloud cf push
 ibmyuming=$(ibmcloud app show $appname | grep h |awk '{print $2}'| awk -F: 'NR==2{print}')
-VMESSCODE=$(base64 -w 0 << EOF
+VMESSCODE=echo'(base64 -w 0 << EOF
    {
       "v": "2",
       "ps": "qjq_IBMVPS",
-      "add": "$ibmyuming",
+      "add": "'$ibmyuming'",
       "port": "443",
-      "id": "$uuid",
+      "id": "'$uuid'",
       "aid": "64",
       "net": "ws",
       "type": "none",
       "host": "",
-      "path": "/$path",
+      "path": "'/$path'",
       "tls": "tls"
     }
 EOF
-    )
+    )'
 echo "地址:" $ibmyuming
 echo "UUID:" $uuid
 echo "path:" /$path
