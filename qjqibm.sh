@@ -60,5 +60,6 @@ ibmyuming=$(ibmcloud app show $appname | grep h |awk '{print $2}'| awk -F: 'NR==
         ]
     }
 EOF
+   )
     echo "配置链接："
     echo vmess://${VMESSCODE}
