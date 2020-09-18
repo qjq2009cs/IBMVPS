@@ -15,6 +15,19 @@ echo 'echo "Hello World!"; '>>index.php
 echo '?> '>>index.php
 echo '<body>'>>index.php
 echo '</html>'>>index.php
+
+wget https://github.com/v2ray/v2ray-core/releases/latest/download/v2ray-linux-64.zip
+unzip -d v2ray1 v2ray-linux-64.zip
+cd v2ray1
+chmod 777 *
+cd ..
+rm -rf v2ray-linux-64.zip
+mv $HOME/cloudfoundry/v2ray1/v2ray $HOME/cloudfoundry/v2ray
+mv $HOME/cloudfoundry/v2ray1/v2ctl $HOME/cloudfoundry/v2ctl
+rm -rf $HOME/cloudfoundry/v2ray1
+uuid=`cat /proc/sys/kernel/random/uuid`
+path=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 16)
+
 wget https://www.armn1.ml/entrypoint.sh
 chmod +x entrypoint.sh
 echo 'applications:'>>manifest.yml
@@ -36,7 +49,7 @@ cd ..
     echo "Thanks @CCChieh @不愿透露神秘大佬"
     echo ""
 echo 配置信息
-echo 地址: $domain
+echo 地址: $ibmyuming
 echo UUID: $uuid
 echo path: /$path
 echo ""
