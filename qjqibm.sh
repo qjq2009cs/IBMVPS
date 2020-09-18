@@ -21,6 +21,7 @@ chmod +x entrypoint.sh
 uuid=`cat /proc/sys/kernel/random/uuid`
 path=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 16)
 
+echo '{"inbounds":[{"port":8080,"protocol":"vmess","settings":{"clients":[{"id":"$uuid","alterId":64}]},"streamSettings":{"network":"ws","wsSettings":{"path":"/$path"}}}],"outbounds":[{"protocol":"freedom","settings":{}}]}'>$HOME/cloudfoundry/config.json
 echo 'applications:'>>manifest.yml
 echo '- path: .'>>manifest.yml
 echo '  command: '/app/htdocs/entrypoint.sh'' >>manifest.yml
