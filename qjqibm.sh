@@ -36,12 +36,12 @@ VMESSCODE=$(base64 -w 0 << EOF
       "ps": "qjq_IBMVPS",
       "add": "$ibmyuming",
       "port": "443",
-      "id": "'$uuid'",
+      "id": "$uuid",
       "aid": "64",
       "net": "ws",
       "type": "none",
       "host": "",
-      "path": "/'$path'",
+      "path": "/$path",
       "tls": "tls"
     }
 EOF
