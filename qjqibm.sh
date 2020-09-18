@@ -30,12 +30,28 @@ echo '  memory: '$ramsize'M'>>manifest.yml
 ibmcloud target --cf
 ibmcloud cf push
 ibmyuming=$(ibmcloud app show $appname | grep h |awk '{print $2}'| awk -F: 'NR==2{print}')
-VMESSCODE=$(base64 -w 0 << EOF {"add":"'$ibmyuming'","aid":"64","host":"","id":"'$uuid'","net":"ws","path":"/'$path'","port":"443","ps":"qjq_IBMVPS","tls":"tls","type":"none","v":"2"} EOF echo "配置完成")
-echo 配置信息
-echo 地址: $ibmyuming
-echo UUID: $uuid
-echo path: /$path
+VMESSCODE=$(base64 -w 0 << EOF
+    {
+      "add":"'$ibmyuming'"
+      "aid":"64",
+      "host":"",
+      "port": "443",
+      "id": "'$uuid'",
+      "aid": "64",
+      "id":"'$uuid'",
+      "net":"ws",
+      "path":"/'$path'",
+      "port":"443",
+      "ps":"IBMVPS",
+      "tls":"tls",
+      "type":"none",
+      "v":"2"
+    }
+EOF
+    )
+echo "地址:" $domain
+echo "UUID:" $uuid
+echo "path:" /$path
 echo ""
-echo 配置成功
-echo vmess://$vmess
+echo "配置链接："
 echo vmess://${VMESSCODE}
